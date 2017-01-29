@@ -1,0 +1,7 @@
+dist
+/reports
+node_modules
+libs/*
+.pid
+
+.log

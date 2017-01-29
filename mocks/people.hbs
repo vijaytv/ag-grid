@@ -1,0 +1,12 @@
+{
+  "statusCode": 0,
+  "data":[
+  {{#repeat 20}}
+  {
+        "name": "{{firstName}} {{lastName}}",
+        "dob": "{{date '1900' '2000' 'YYYY'}}",
+        "city": "{{city}}"
+  }
+  {{/repeat}}
+  ]
+}
