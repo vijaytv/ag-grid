@@ -5,8 +5,6 @@ var agGrid = require('ag-grid');
 agGrid.initialiseAgGridWithAngular1(angular);
 
 var GridCtrl = function($scope,DataService) {
-  $scope.testVar = 'We are up and running from a required module!';
-
   var columnDefs = [
           {headerName: "City", field: "city"},
           {headerName: "DOB", field: "dob"},
@@ -20,7 +18,7 @@ var GridCtrl = function($scope,DataService) {
 
   DataService.getPeople().then(function(data){
       console.log(data);
-      $scope.gridOptions.rowData = data;
+      $scope.gridOptions.api.setRowData(data);
   })
 
 };
