@@ -13,7 +13,9 @@ var GridCtrl = function($scope,DataService) {
 
   $scope.gridOptions = {
       columnDefs: columnDefs,
-      rowData: null
+      rowData: null,
+      enableSorting: true,
+      enableFilter: true
   };
 
   DataService.getPeople().then(function(data){
