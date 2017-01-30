@@ -15,11 +15,10 @@ var GridCtrl = function($scope,DataService) {
       columnDefs: columnDefs,
       rowData: null,
       enableSorting: true,
-      enableFilter: true
+      enableFilter: false
   };
 
   DataService.getPeople().then(function(data){
-      console.log(data);
       $scope.gridOptions.api.setRowData(data);
   })
 

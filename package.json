@@ -13,6 +13,7 @@
   "author": "vj",
   "license": "ISC",
   "devDependencies": {
+    "browser-sync": "^2.18.6",
     "browserify": "^13.3.0",
     "del": "^2.2.2",
     "dummy-json": "^2.0.0",
@@ -24,10 +25,12 @@
     "gulp-inject": "^4.2.0",
     "gulp-nodemon": "^2.2.1",
     "gulp-serve": "^1.4.0",
+    "gulp-sourcemaps": "^2.4.0",
     "gulp-util": "^3.0.8",
     "gulp-watchify": "^0.6.0",
     "http-proxy-middleware": "^0.17.3",
     "run-sequence": "^1.2.2",
+    "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.9.0"
   },

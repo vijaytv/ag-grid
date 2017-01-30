@@ -9,7 +9,9 @@ var concat = require('gulp-concat');
 var proxy = require('http-proxy-middleware');
 var source = require('vinyl-source-stream');
 var gutil = require('gulp-util');
-
+var browserSync = require('browser-sync').create();
+var sourcemaps = require('gulp-sourcemaps');
+var buffer = require('vinyl-buffer')
 
 var watchify = require('watchify');
 
@@ -38,7 +40,13 @@ function bundle (bundler) {
     return bundler
         .bundle()
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest('./dist/js'));
+        .pipe(buffer())
+        .pipe(sourcemaps.init({
+          loadMaps: true
+        }))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('./dist/js'))
+        .pipe(connect.reload());
 }
 
 gulp.task('watch', function () {
@@ -58,40 +66,17 @@ gulp.task('js', function () {
 });
 
 
-
-// // Browserify task
-// gulp.task('browserify', function() {
-//   // Single point of entry (make sure not to src ALL your files, browserify will figure it out for you)
-//   gulp.src(['app/scripts/main.js'])
-//   .pipe(browserify({
-//     insertGlobals: true,
-//     debug: true
-//   }))
-//   // Bundle to a single file
-//   .pipe(concat('bundle.js'))
-//   // Output it to our dist folder
-//   .pipe(gulp.dest('dist/js'));
-// });
-//
-
-
 gulp.task('copy-app', function(){
   return gulp.src(['./app/**/*.html','./app/**/*.css'])
           .pipe(gulp.dest('./dist'));
 })
-//
-// gulp.task('serve',serve({
-//   root: 'dist',
-//   port: 80,
-//   middleware: function(req, res) {
-//
-//   }
-// }))
+
 
 gulp.task('connect', function() {
     connect.server({
         root: ['dist'],
         port: 3000,
+        livereload: true,
         middleware: function(connect, opt) {
             return [
                 proxy('/api', {
